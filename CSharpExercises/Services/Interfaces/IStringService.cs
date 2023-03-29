@@ -2,9 +2,10 @@
 
 namespace CSharpExercises.Services.Interfaces
 {
-    internal interface IWordService
+    internal interface IStringService
     {
         public LongestWordModel FindLongestWordInSentence(string sentence);
         public string ReverseString(string inputString);
+        string NumberOfWordsInASentence(string inputString);
     }
 }

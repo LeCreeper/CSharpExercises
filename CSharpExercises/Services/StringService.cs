@@ -3,7 +3,7 @@ using CSharpExercises.Services.Interfaces;
 
 namespace CSharpExercises.Services
 {
-    internal class WordService : IWordService
+    internal class StringService : IStringService
     {
         public LongestWordModel FindLongestWordInSentence(string sentence)
         {
@@ -32,6 +32,11 @@ namespace CSharpExercises.Services
                 reversedString += inputString[i];
             }
             return reversedString;
+        }
+
+        public string NumberOfWordsInASentence(string inputString) {
+            var words = inputString.Split(' ');
+            return words.Length.ToString();
         }
     }
 }
