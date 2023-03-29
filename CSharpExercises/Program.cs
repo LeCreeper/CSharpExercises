@@ -8,7 +8,7 @@ namespace CSharpExercises
     internal class Program
     {
         static readonly ServiceProvider serviceProvider = SetupServiceProvider();
-        static readonly IWordService wordService = serviceProvider.GetService<IWordService>();
+        static readonly IStringService wordService = serviceProvider.GetService<IStringService>();
         static readonly IProblemService problemService = serviceProvider.GetService<IProblemService>();
 
         static void Main(string[] args)
@@ -27,7 +27,7 @@ namespace CSharpExercises
                         var index = listOfProblems.IndexOf(problem);
                             index++;
 
-                        Console.WriteLine($"{index}.- {problem}");
+                        Console.WriteLine($" {index}.{problem}");
                     }
 
                     Console.WriteLine("\nEnter input. \nType \"Quit\" to close program.");
@@ -51,7 +51,7 @@ namespace CSharpExercises
         private static ServiceProvider SetupServiceProvider()
         {
             var serviceProvider = new ServiceCollection()
-            .AddTransient<IWordService, WordService>()
+            .AddTransient<IStringService, StringService>()
             .AddTransient<IProblemService, ProblemService>()
             .BuildServiceProvider();
 
@@ -61,7 +61,8 @@ namespace CSharpExercises
         private static void RunProblem (string problemName)
         {
             var problem = new Problems(wordService);
-            var method = typeof(Problems).GetMethod(problemName, BindingFlags.Instance | BindingFlags.NonPublic);
+            var problemNameWithoutSpaces = problemName.Replace(" ", "");
+            var method = typeof(Problems).GetMethod(problemNameWithoutSpaces, BindingFlags.Instance | BindingFlags.NonPublic);
             method.Invoke(problem, null);
         }
         
