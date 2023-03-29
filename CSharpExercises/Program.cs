@@ -51,7 +51,7 @@ namespace CSharpExercises
         private static ServiceProvider SetupServiceProvider()
         {
             var serviceProvider = new ServiceCollection()
-            .AddTransient<IStringService, StringService>()
+            .AddTransient<IStringService, StringService>() 
             .AddTransient<IProblemService, ProblemService>()
             .BuildServiceProvider();
 
